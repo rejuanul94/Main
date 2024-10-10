@@ -9,12 +9,156 @@
   <title>♡ Rejuantech</title>
 
   <style>
-  body{
-    background-image:url('wallpaper.jpg');
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    background-size:100% 100%
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease;
+  background-color: #f0f0f0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.navbar-logo span {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links li a {
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  background-color: #575757;
+  border-radius: 4px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  top: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 10px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #575757;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px;
+  transition: 0.3s;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+}
+
+.navbar.dark-mode {
+  background-color: #1e1e1e;
+}
+
+.navbar-links li a.dark-mode {
+  color: #fff;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 1;
   }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-links li {
+    text-align: center;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
     .searchBox {
   display: flex;
   max-width: 230px;
@@ -66,22 +210,54 @@ button:active {
 
 </head>
 
-<body bgcolor="black" alink="pink" vlink="pink" text="beige">
+<body bgcolor="black" alink="pink" vlink="pink" text="white">
 <header>
 
-<font color="beige">
-      <br />
-<a href="https://rejuanoptions.netlify.app"><img src="threedot.jpg" alt="options" width="25px"/></a>
-
-
-
-<center>
-<img src="myphoto.png" alt="my pic" width =35 />
-<br />
-<h3>
-   👨‍💻 Welcome to Rejuantech ⚡
-</h3>
-♡
+<nav class="navbar">
+      <div class="navbar-logo">
+        <img src="content://media/external/downloads/23672" alt="Brand Logo">
+        <span>@_rxyzntech ⚡</span>
+      </div>
+      <ul class="navbar-links">
+        <br>
+        <br>
+        <li><a href="https://maintech.netlify.app"><b>Home 🌏</b></a></li>
+        <br>
+        <br>
+        <li><a href="https://rejuantravels.netlify.app"><b>Trips ☂️</b></a></li>
+        <br>
+        <br>
+        
+        <li><a href=""><b>About Us 💨</b></a></li>
+        <br>
+        <br>
+        
+        <li><a href=""><b>Contact ☎</b></a></li>
+        <br>
+        <br>
+        
+        <li><a href="https://rejworld.netlify.app"><b>My Creations 👀</b></a></li>
+        <br>
+        <br>
+        
+        <li><a href="https://rejuanterms.netlify.app"><b>Terms of use 📄</b></a></li>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <center><i><b>© An A.R.Creation</b></i></center>
+        <br>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()">🌗</button>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+<br>
 <hr />
 <br>
 </font>
@@ -189,6 +365,21 @@ Date :- 2<sup>nd</sup> June, 2024 "..
 <footer>
 
 </footer>
+<script>
+function toggleMenu() {
+  const navLinks = document.querySelector('.navbar-links');
+  navLinks.classList.toggle('active');
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const nav = document.querySelector('.navbar');
+  nav.classList.toggle('dark-mode');
+  const links = document.querySelectorAll('.navbar-links li a');
+  links.forEach(link => link.classList.toggle('dark-mode'));
+}
+
+</script>
   
   
 </body>
